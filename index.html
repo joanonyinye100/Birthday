@@ -91,7 +91,7 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 /* wishes */
 .wishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:30px}
 .wish{border:3px solid var(--ink);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.wish p{margin:0;font-size:17px}
+.wish p{margin:0;font-size:17px;white-space:pre-line}
 .wish .from{margin-top:auto;font-family:var(--display);font-weight:800;font-size:21px}
 .wish .from span{display:block;font-family:var(--body);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
 .w0{background:#fff1b8}.w1{background:#ffd6de}.w2{background:#cdeeff}.w3{background:#c4f1ec}.w4{background:#ddd5ff}
@@ -194,23 +194,23 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 <script>
 /* ---- Wishes: replace names and text here ---- */
 var WISHES=[
- {name:"Friend name 1",text:"Happy 30th, Jude! Wish goes here."},
- {name:"Friend name 2",text:"Wish goes here. Many more miles ahead!"},
- {name:"Friend name 3",text:"Wish goes here. Cheers to you, my guy."},
- {name:"Friend name 4",text:"Wish goes here. Keep exploring."},
- {name:"Friend name 5",text:"Wish goes here. Thirty looks good on you."},
+ {name:"Oluchukwu",note:"Cousin · MCFunnyNurse, UK",text:"Happy Birthday, Jude ❤️🎂\n\nI just want you to know how much I appreciate you and how lucky I am to have you as my cousin. You’ve been so supportive of me & my family, and it means more than you probably realise. Even with everything you’ve had to navigate yourself, you’ve still been there for me, and I’ll never take that for granted. ❤️\n\nYou have such a good heart, and I genuinely wish you so much happiness, peace and love. I hope this next year brings you plenty of reasons to smile and reminds you just how loved you are.\n\nThank you for always being there for my family. Please know I’m always here for you too, no matter what. Love you lots, Jude. Have the most lovely birthday because you truly deserve it ❤️🥳😘"},
+ {name:"Tobechukwu",note:"Cousin",text:"Happy 30th Birthday, cousin!\nYou’ve carried so much heart, strength, and kindness through every season, and it shows in the way you treat the people around you.\n\nYou have in so many ways brought out the best in me and made me see the best versions of myself, and for that I am very grateful.\n\nAll the memories we shared this far, Family handouts, football moments both on and off the pitch, Running together, painting together, just to mention a few, are all inspired by you.\n\nI’m so proud of you, and I’m lucky to call you family.\n\nYou deserve every bit of success and joy that comes your way.\n\nCheers to more and more good things to come.\n\nWith all my love, Tobechukwu"},
+ {name:"Adaora",text:"Happy 30th birthday, Jude! ❤️\n\nThirty years of life, and a whole new decade of possibilities ahead of you. It’s a beautiful thing to have shared so many years and memories with you, and to have witnessed parts of your journey. I am grateful for the lessons I have learned from you, the experiences we have shared, and the ways knowing you has contributed to my own journey. Good people deserve good things, and you are ONE.\n\nAs you begin this new chapter, I pray that God fills your life with peace, happiness, wisdom, and abundant blessings. May He guide your steps, bless the work of your hands, and bring you closer to the dreams you have dearly carried in your heart.\n\nYou deserve a beautiful life, Jude, and I genuinely hope this next chapter gives you more than achievements to celebrate. I hope it gives you moments to pause and appreciate how far you have come, the people whose journeys you have made lighter, and even more reasons to be grateful for the life you are building.\n\nMay God continue to guide and uphold you, especially during this difficult season. Amen.\n\nProud of you always, my guy. ❤️"},
+ {name:"Stephen Oladele",text:"Dear Jude,\n\nI respect your tenacity, growth, mental strength, and creativity. This is coming from a creative who has learnt so much from you.\n\nI look back at our struggles as journalists, men of faith, and fun seekers who made the best out of nothing as undergraduates. Your bravery and doggedness easily rubs off on me.\n\nI see what you are doing now and feel insanely inspired. Coupled with the black October you have experienced, your toughness and exemplary calmness are almost inimitable.\n\nRest assured that you have a friend and brother in me. God bless you abundantly this year and always, Amen.\n\nHappy birthday, JUDELUCAN 🫶🏿❤️🙌🏾"},
+ {name:"Joker",text:"Happy Birthday, my boy\n\nYou are a rare gem whose selflessness, accommodating nature, and willingness to share opportunities and valuable information without holding back are truly admirable. May the kindness you show others return to you in abundance. May this new year bring you greater opportunities, success, wisdom, and happiness. May you continue to shine and be celebrated as you have helped others shine.\n\nHappy Birthday to a genuinely good heart! 🥂🎉"},
  {name:"Friend name 6",text:"Wish goes here. Enjoy your day."},
  {name:"Friend name 7",text:"Wish goes here. See you at the next finish line."},
  {name:"Friend name 8",text:"Wish goes here. Happy birthday, legend."},
- {name:"Friend name 9",text:"Wish goes here. Proud to know you."},
- {name:"Friend name 10",text:"Wish goes here. Let's celebrate properly."}
+ {name:"nikihandsome",text:"Happiest birthday champ\n\nMore fruitful years ahead"},
+ {name:"Anonymous",text:"As you celebrate your birthday, may you be surrounded by love, laughter from all your loved ones, good health and more financial favor, Happy Birthday chief."}
 ];
 var box=document.getElementById('wishes');
 WISHES.forEach(function(w,i){
   var d=document.createElement('div');d.className='wish w'+(i%5);
   var p=document.createElement('p');p.textContent='“'+w.text+'”';
   var f=document.createElement('div');f.className='from';f.textContent=w.name;
-  var s=document.createElement('span');s.textContent='Friend of Jude';f.appendChild(s);
+  var s=document.createElement('span');s.textContent=w.note||'Friend of Jude';f.appendChild(s);
   d.appendChild(p);d.appendChild(f);box.appendChild(d);
 });
 
