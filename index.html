@@ -47,6 +47,7 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 .bib .num{font-family:var(--display);font-weight:800;font-size:clamp(100px,17vw,150px);line-height:.9;color:var(--coral)}
 .bib .km{display:block;font-family:var(--display);font-weight:800;font-size:clamp(34px,6vw,48px);line-height:1;background:var(--ink);color:#fff;border-radius:8px;padding:6px 0 8px;margin-top:6px}
 .bib .nm{font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-top:10px;overflow-wrap:anywhere}
+.spark{position:absolute;width:var(--s,22px);height:var(--s,22px);background:var(--c,var(--sun));clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);pointer-events:none}
 @media(max-width:620px){.hero{grid-template-columns:1fr}.bib{justify-self:center;margin-top:8px}}
 
 /* stripes */
@@ -81,6 +82,14 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 .s1{background:var(--sun)}.s2{background:var(--coral);color:#fff}.s3{background:var(--sky)}.s4{background:var(--teal)}
 .s2 p,.s2 h3{color:#fff}
 
+/* party poppers that pop up when Celebrate Jude is tapped */
+.popper{position:fixed;bottom:env(safe-area-inset-bottom,0px);z-index:6;width:92px;pointer-events:none;transform-origin:50% 100%;transform:translateY(135%) rotate(32deg);transition:transform .35s cubic-bezier(.2,1.4,.4,1)}
+.popper.left{left:max(20px,env(safe-area-inset-left,0px))}
+.popper.right{right:max(20px,env(safe-area-inset-right,0px));transform:translateY(135%) rotate(-32deg)}
+.popper.left.show{transform:translateY(0) rotate(32deg)}
+.popper.right.show{transform:translateY(0) rotate(-32deg)}
+.popper svg{display:block;width:100%;height:auto}
+
 /* letter */
 .letter{margin-top:30px;background:#fff;border:3px solid var(--ink);border-radius:24px;padding:clamp(22px,5vw,54px);box-shadow:9px 9px 0 var(--violet)}
 .letter .to{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,46px);line-height:1;color:var(--violet);margin-bottom:.6em}
@@ -89,7 +98,9 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 .letter .sig{font-family:var(--display);font-weight:800;font-size:28px;margin:1.2em 0 0}
 
 /* wishes */
-.wishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:30px}
+.wishes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:30px;align-items:stretch}
+.wish.wide{grid-column:1/-1}
+@media(max-width:700px){.wishes{grid-template-columns:minmax(0,1fr)}}
 .wish{border:3px solid var(--ink);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .wish p{margin:0;font-size:17px;white-space:pre-line}
 .wish .from{margin-top:auto;font-family:var(--display);font-weight:800;font-size:21px}
@@ -104,6 +115,8 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 
 @media (prefers-reduced-motion:no-preference){
   .done{animation:run 1.6s cubic-bezier(.3,.7,.2,1) both}
+  .spark{animation:tw 2.4s ease-in-out infinite}
+  @keyframes tw{0%,100%{transform:scale(.3) rotate(0);opacity:.5}50%{transform:scale(1) rotate(25deg);opacity:1}}
   @keyframes run{from{width:0}to{width:100%}}
   .runner{animation:go 1.6s cubic-bezier(.3,.7,.2,1) both}
   @keyframes go{from{right:calc(100% - 44px)}to{right:0}}
@@ -127,6 +140,11 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
     <div class="num">30</div>
     <span class="km">KM</span>
     <div class="nm">Jude &middot; Enumjekonaishu</div>
+    <i class="spark" style="--s:30px;top:-16px;left:-18px;animation-delay:0s"></i>
+    <i class="spark" style="--s:20px;--c:var(--coral);top:30px;right:-16px;animation-delay:.6s"></i>
+    <i class="spark" style="--s:26px;--c:var(--teal);bottom:40px;left:-20px;animation-delay:1.1s"></i>
+    <i class="spark" style="--s:34px;--c:var(--violet);bottom:-18px;right:20px;animation-delay:1.6s"></i>
+    <i class="spark" style="--s:18px;--c:var(--sky);top:-12px;right:50px;animation-delay:.3s"></i>
   </div>
 </header>
 
@@ -191,19 +209,83 @@ button.go:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 
 </div>
 
+<div class="popper left" aria-hidden="true"><svg viewBox="0 0 100 130"><polygon points="12,8 88,8 58,125 42,125" fill="#ffc400" stroke="#1b1340" stroke-width="3"/><polygon points="21,44 79,44 73,62 27,62" fill="#ff4d6d"/><polygon points="31,84 69,84 65,101 35,101" fill="#00b8a9"/><ellipse cx="50" cy="8" rx="38" ry="9" fill="#1b1340"/></svg></div>
+<div class="popper right" aria-hidden="true"><svg viewBox="0 0 100 130"><polygon points="12,8 88,8 58,125 42,125" fill="#6c4cff" stroke="#1b1340" stroke-width="3"/><polygon points="21,44 79,44 73,62 27,62" fill="#ffc400"/><polygon points="31,84 69,84 65,101 35,101" fill="#ff4d6d"/><ellipse cx="50" cy="8" rx="38" ry="9" fill="#1b1340"/></svg></div>
+
 <script>
 /* ---- Wishes: replace names and text here ---- */
 var WISHES=[
- {name:"Oluchukwu",note:"Cousin · MCFunnyNurse, UK",text:"Happy Birthday, Jude ❤️🎂\n\nI just want you to know how much I appreciate you and how lucky I am to have you as my cousin. You’ve been so supportive of me & my family, and it means more than you probably realise. Even with everything you’ve had to navigate yourself, you’ve still been there for me, and I’ll never take that for granted. ❤️\n\nYou have such a good heart, and I genuinely wish you so much happiness, peace and love. I hope this next year brings you plenty of reasons to smile and reminds you just how loved you are.\n\nThank you for always being there for my family. Please know I’m always here for you too, no matter what. Love you lots, Jude. Have the most lovely birthday because you truly deserve it ❤️🥳😘"},
- {name:"Tobechukwu",note:"Cousin",text:"Happy 30th Birthday, cousin!\nYou’ve carried so much heart, strength, and kindness through every season, and it shows in the way you treat the people around you.\n\nYou have in so many ways brought out the best in me and made me see the best versions of myself, and for that I am very grateful.\n\nAll the memories we shared this far, Family handouts, football moments both on and off the pitch, Running together, painting together, just to mention a few, are all inspired by you.\n\nI’m so proud of you, and I’m lucky to call you family.\n\nYou deserve every bit of success and joy that comes your way.\n\nCheers to more and more good things to come.\n\nWith all my love, Tobechukwu"},
- {name:"Adaora",text:"Happy 30th birthday, Jude! ❤️\n\nThirty years of life, and a whole new decade of possibilities ahead of you. It’s a beautiful thing to have shared so many years and memories with you, and to have witnessed parts of your journey. I am grateful for the lessons I have learned from you, the experiences we have shared, and the ways knowing you has contributed to my own journey. Good people deserve good things, and you are ONE.\n\nAs you begin this new chapter, I pray that God fills your life with peace, happiness, wisdom, and abundant blessings. May He guide your steps, bless the work of your hands, and bring you closer to the dreams you have dearly carried in your heart.\n\nYou deserve a beautiful life, Jude, and I genuinely hope this next chapter gives you more than achievements to celebrate. I hope it gives you moments to pause and appreciate how far you have come, the people whose journeys you have made lighter, and even more reasons to be grateful for the life you are building.\n\nMay God continue to guide and uphold you, especially during this difficult season. Amen.\n\nProud of you always, my guy. ❤️"},
- {name:"Stephen Oladele",text:"Dear Jude,\n\nI respect your tenacity, growth, mental strength, and creativity. This is coming from a creative who has learnt so much from you.\n\nI look back at our struggles as journalists, men of faith, and fun seekers who made the best out of nothing as undergraduates. Your bravery and doggedness easily rubs off on me.\n\nI see what you are doing now and feel insanely inspired. Coupled with the black October you have experienced, your toughness and exemplary calmness are almost inimitable.\n\nRest assured that you have a friend and brother in me. God bless you abundantly this year and always, Amen.\n\nHappy birthday, JUDELUCAN 🫶🏿❤️🙌🏾"},
- {name:"Joker",text:"Happy Birthday, my boy\n\nYou are a rare gem whose selflessness, accommodating nature, and willingness to share opportunities and valuable information without holding back are truly admirable. May the kindness you show others return to you in abundance. May this new year bring you greater opportunities, success, wisdom, and happiness. May you continue to shine and be celebrated as you have helped others shine.\n\nHappy Birthday to a genuinely good heart! 🥂🎉"},
- {name:"Friend name 6",text:"Wish goes here. Enjoy your day."},
- {name:"Friend name 7",text:"Wish goes here. See you at the next finish line."},
- {name:"Friend name 8",text:"Wish goes here. Happy birthday, legend."},
- {name:"nikihandsome",text:"Happiest birthday champ\n\nMore fruitful years ahead"},
- {name:"Anonymous",text:"As you celebrate your birthday, may you be surrounded by love, laughter from all your loved ones, good health and more financial favor, Happy Birthday chief."}
+ {
+  "name": "Oluchukwu",
+  "note": "Cousin · MCFunnyNurse, UK",
+  "text": "Happy Birthday, Jude ❤️🎂\n\nI just want you to know how much I appreciate you and how lucky I am to have you as my cousin. You’ve been so supportive of me & my family, and it means more than you probably realise. Even with everything you’ve had to navigate yourself, you’ve still been there for me, and I’ll never take that for granted. ❤️\n\nYou have such a good heart, and I genuinely wish you so much happiness, peace and love. I hope this next year brings you plenty of reasons to smile and reminds you just how loved you are.\n\nThank you for always being there for my family. Please know I’m always here for you too, no matter what. Love you lots, Jude. Have the most lovely birthday because you truly deserve it ❤️🥳😘"
+ },
+ {
+  "name": "Tobechukwu",
+  "note": "Cousin",
+  "text": "Happy 30th Birthday, cousin!\nYou’ve carried so much heart, strength, and kindness through every season, and it shows in the way you treat the people around you.\n\nYou have in so many ways brought out the best in me and made me see the best versions of myself, and for that I am very grateful.\n\nAll the memories we shared this far, Family handouts, football moments both on and off the pitch, Running together, painting together, just to mention a few, are all inspired by you.\n\nI’m so proud of you, and I’m lucky to call you family.\n\nYou deserve every bit of success and joy that comes your way.\n\nCheers to more and more good things to come.\n\nWith all my love, Tobechukwu"
+ },
+ {
+  "name": "Ekene",
+  "note": "Cousin",
+  "text": "Happy birthday Chief Chief ❤️🎉\n\nYou’re such a bright, dedicated and God loving person. I admire your drive, your discipline and the way you always show up for the people you love. Having you means having someone who will motivates, encourages and pushes one to be better. I’m grateful to have you as my cousin and I pray God continues to bless you in all you do.\n\nKeep running your race, Jude both on and off the track. May God always give you the strength to keep going and the grace to enjoy every step of the journey. I’m grateful to have you as my cousin and i am always rooting for you.\n\nHappy birthday once again Chief ❤️"
+ },
+ {
+  "name": "Stephen Oladele",
+  "text": "Dear Jude,\n\nI respect your tenacity, growth, mental strength, and creativity. This is coming from a creative who has learnt so much from you.\n\nI look back at our struggles as journalists, men of faith, and fun seekers who made the best out of nothing as undergraduates. Your bravery and doggedness easily rubs off on me.\n\nI see what you are doing now and feel insanely inspired. Coupled with the black October you have experienced, your toughness and exemplary calmness are almost inimitable.\n\nRest assured that you have a friend and brother in me. God bless you abundantly this year and always, Amen.\n\nHappy birthday, JUDELUCAN 🫶🏿❤️🙌🏾"
+ },
+ {
+  "name": "Adaora",
+  "text": "Happy 30th birthday, Jude! ❤️\n\nThirty years of life, and a whole new decade of possibilities ahead of you. It’s a beautiful thing to have shared so many years and memories with you, and to have witnessed parts of your journey. I am grateful for the lessons I have learned from you, the experiences we have shared, and the ways knowing you has contributed to my own journey. Good people deserve good things, and you are ONE.\n\nAs you begin this new chapter, I pray that God fills your life with peace, happiness, wisdom, and abundant blessings. May He guide your steps, bless the work of your hands, and bring you closer to the dreams you have dearly carried in your heart.\n\nYou deserve a beautiful life, Jude, and I genuinely hope this next chapter gives you more than achievements to celebrate. I hope it gives you moments to pause and appreciate how far you have come, the people whose journeys you have made lighter, and even more reasons to be grateful for the life you are building.\n\nMay God continue to guide and uphold you, especially during this difficult season. Amen.\n\nProud of you always, my guy. ❤️"
+ },
+ {
+  "name": "Henry Abang Yokkyeewe",
+  "text": "Happy Birthday, Brother\n\nToday is your special day, and I know this birthday may feel different from all the others because of the painful loss of your pops. I can only imagine how difficult it must be to celebrate another year of life while carrying the weight of such a deep loss.\n\nI know no words can truly take away the pain of losing someone so precious, especially a father whose presence can never be replaced. But on this special day, I pray that God gives you the strength to keep going, the courage to face each new day, and the peace that surpasses all understanding.\n\nAs you celebrate another year of life, may you find comfort in the beautiful memories you shared with your dad. May his love, his lessons, and everything he stood for continue to live in your heart and guide you through life's journey.\n\nMy prayer for you is that this new chapter brings healing to your heart, opens beautiful doors for you, and gives you countless reasons to smile again. May God turn your pain into strength, your tears into testimonies, and your struggles into stories of victory.\n\nHappy Birthday, my brother and friend. You deserve happiness, peace, and every beautiful thing life has to offer. Even in moments when life feels unfair, never forget that your story is still unfolding, and there are brighter days ahead.\n\nMay God bless you abundantly, protect you, and grant you the grace to achieve all the dreams you carry in your heart. And may your father's memory forever remain a blessing to you.\n\nHappy Birthday once again, my dear friend. Keep being strong, but remember that you don't always have to be strong. It's okay to grieve, it's okay to miss him, and it's okay to smile again. You are loved, today and always."
+ },
+ {
+  "name": "David Ayobami",
+  "text": "To someone who doesn't just chase dreams and adventures, you plan towards it and make it a reality. Watching you set goals and accomplish them is nothing short of inspiring. Your focus, determination, and unstoppable drive set the bar high for everyone around you. Today as we celebrate you not just for the friend you are, but for the relentless passion you bring to everything you do, a true goal-getter. I hope this chapter brings you everything you’ve been working so hard for, along with enough time to enjoy and celebrate your success with the ones you love and cherish.\n\nContinue to walk in grace and never stumble, Jude!"
+ },
+ {
+  "name": "Joker",
+  "text": "Happy Birthday, my boy\n\nYou are a rare gem whose selflessness, accommodating nature, and willingness to share opportunities and valuable information without holding back are truly admirable. May the kindness you show others return to you in abundance. May this new year bring you greater opportunities, success, wisdom, and happiness. May you continue to shine and be celebrated as you have helped others shine.\n\nHappy Birthday to a genuinely good heart! 🥂🎉"
+ },
+ {
+  "name": "Christiana Ejikeme",
+  "text": "HAPPY BIRTHDAY, JUDE ❤️🎂🙏🏽\n\nToday, I celebrate you, not just for the life you have lived, but for the man you are becoming. I know this birthday comes with a heavy heart, having lost your father, and as the first son, you now face new responsibilities and a journey of finding your footing in life.\n\nI pray that God gives you the strength to carry on, the wisdom to make the right decisions, and the courage to become the man you desire to be. May you honour your father's legacy while building a beautiful future of your own. Remember, you don't have to figure everything out at once; take it one day at a time, and allow God to guide your steps.\n\nMay the Lord comfort your heart, provide for your family, bless the work of your hands, and give you grace for every responsibility ahead. May you never walk alone, and may your father's memory continue to inspire you.\n\nMay this new chapter bring you healing, growth, favour, wisdom, and success. May God mould you into a man you will be proud of, and may your future be filled with testimonies of His goodness.\n\nYou are strengthened for the journey ahead, and your best days are still before you. Amen! Cheers🥂"
+ },
+ {
+  "name": "Maria Seyifunmi",
+  "text": "YOU ARE AN AMAZING HUMAN BEING!\nThis is what I get to say about you to everyone who ask. You’re an amazing person and I am glad to have met you.\nI also want you to know that I AM SUPER PROUD OF YOU, every time, always. I pray that the wisdom of God never departs from you, his beauty radiates in your life forever.\nHappy birthday, Judelucan."
+ },
+ {
+  "name": "Chuwkubuike Theodora Nnena",
+  "text": "I met Jude through my friend henry a little over a year now and we hung out, laughed, cried played etc\nJuu Juu, you’re so sweet, calm , gentle , accommodating and understanding. I know this is a trying time for u but i still want to remind u that you’re loved and favored and i dey for u anytime my love.\nHave the best birthday yet dear\n\nBisous Bisous chéri 😽"
+ },
+ {
+  "name": "Odogwu Joe blaq",
+  "text": "Happy Birthday, my brother! ❤️🎂 May God continue to bless you, guide your steps, and grant you all your heart’s desires. May this new chapter bring you more happiness, success, good health, and countless blessings. More life and greater wins, my guy."
+ },
+ {
+  "name": "Daniella Abee",
+  "text": "Happy Birthday to one of the most cheerful, free-spirited, and amazing souls! 🥳, You have this beautiful way of bringing life and positive energy wherever you go, and I hope you never lose that part of yourself. Keep being you, keep chasing your dreams, and keep running towards greatness, both on and off the track. I know this birthday might feel a little different with your dad no longer here physically, but I want you to remember that the love he gave you will always be a part of you. I hope you never forget that you have every reason to make him proud, As you step into another year, I pray that life brings you more reasons to smile, more victories to celebrate, more strength for the difficult days, and more beautiful moments to cherish. May your new age open doors to greatness, and may you keep winning in every area of your life.\n\nHappy Birthday once again, Jude 🥳❤️ Keep shining, keep smiling, and keep breaking limits. The world is yet to see the best of you!"
+ },
+ {
+  "name": "Marshal",
+  "text": "Happy Birthday my OG, May this new chapter bring you unexpected blessings, healing, open doors, and countless reasons to smile again. Better days are ahead, and I pray you live to see and enjoy them. Keep holding on. You are stronger than you think, and you are never alone. Enjoy your day to the fullest my guy❤️🙏🎉"
+ },
+ {
+  "name": "Ajayi Bukola Perpetual",
+  "text": "Happy birthday Jude💙, May God bless you with good health, endless happiness, peace of mind, and long life. May your new age bring you countless reasons to smile and beautiful blessings. Love and light always! 🥳💕"
+ },
+ {
+  "name": "nikihandsome",
+  "text": "Happiest birthday champ\n\nMore fruitful years ahead"
+ },
+ {
+  "name": "Anonymous",
+  "text": "As you celebrate your birthday, may you be surrounded by love, laughter from all your loved ones, good health and more financial favor, Happy Birthday chief."
+ }
 ];
 var box=document.getElementById('wishes');
 WISHES.forEach(function(w,i){
@@ -213,6 +295,7 @@ WISHES.forEach(function(w,i){
   var s=document.createElement('span');s.textContent=w.note||'Friend of Jude';f.appendChild(s);
   d.appendChild(p);d.appendChild(f);box.appendChild(d);
 });
+if(WISHES.length%2)box.lastChild.classList.add('wide');
 
 /* ---- Route ticks: km 0 to 30 ---- */
 var tk=document.getElementById('ticks');
@@ -242,12 +325,19 @@ function burst(n){
 function loop(){
   cx.clearRect(0,0,cv.width,cv.height);
   parts=parts.filter(function(p){return p.y<cv.height+30});
-  parts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()});
+  parts.forEach(function(p){if(p.g){p.vy+=p.g;p.vx*=.99}p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()});
   if(parts.length)requestAnimationFrame(loop);else run=false;
 }
 var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.getElementById('party').addEventListener('click',function(){if(!calm)burst(220)});
+function fire(side){var w=cv.width,h=cv.height,x=side<0?128:w-128,y=h-100;
+  for(var i=0;i<120;i++){var ang=(side<0?-58:-122)*Math.PI/180+(Math.random()-.5)*.9,sp=10+Math.random()*13;
+    parts.push({x:x,y:y,w:6+Math.random()*7,h:10+Math.random()*10,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,g:.28,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[i%cols.length]})}
+  if(!run){run=true;requestAnimationFrame(loop)}}
+var pops=document.querySelectorAll('.popper'),popT=null;
+function popUp(){clearTimeout(popT);pops.forEach(function(p){p.classList.add('show')});setTimeout(function(){fire(-1);fire(1)},380);popT=setTimeout(function(){pops.forEach(function(p){p.classList.remove('show')})},2300)}
+document.getElementById('party').addEventListener('click',function(){if(!calm){burst(100);popUp()}});
 if(!calm)setTimeout(function(){burst(90)},500);
+
 </script>
 
 </body></html>
